@@ -191,7 +191,7 @@ private:
 				par[line][ind][rev][trans_cnt] = pstate;
 				if (!in_q[line][ind][rev][trans_cnt])
 					in_q[line][ind][rev][trans_cnt] = true;
-				q.emplace_back(line, ind, rev, this->get_station_id(line, ind), trans_cnt);
+				q.emplace_back(line, ind, this->get_station_id(line, ind), rev, trans_cnt);
 			}
 		};
 		sssp_state dummy(-1, -1, -1, -1, -1);
@@ -217,7 +217,7 @@ private:
 				continue;
 			nst.index += (st.rev_order ? -1 : 1);
 			cur_time = lines_[st.line].closest_train(st.index, st.rev_order, cur_time);
-			cur_time += lines_[st.line].dist[st.rev_order ? nst.index : st.index];
+			cur_time += lines_[st.line].dist[st.rev_order ? nst.index : st.index];						
 			relax(nst.line, nst.index, nst.rev_order, nst.trans_count, cur_time, st);
 		}
 
